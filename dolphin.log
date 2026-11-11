@@ -1,0 +1,24 @@
+nohup: ignoring input
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8086
+ * Running on http://10.124.134.163:8086
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 123-473-329
+127.0.0.1 - - [31/Oct/2026 22:17:25] "[32mGET / HTTP/1.1[0m" 302 -
+127.0.0.1 - - [31/Oct/2026 22:17:25] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [31/Oct/2026 22:17:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [31/Oct/2026 22:24:57] "[32mGET / HTTP/1.1[0m" 302 -
+10.168.229.123 - - [31/Oct/2026 22:26:23] "[32mGET / HTTP/1.1[0m" 302 -
+10.168.229.123 - - [31/Oct/2026 22:26:23] "GET /login HTTP/1.1" 200 -
+10.168.229.123 - - [31/Oct/2026 22:26:25] "[32mGET / HTTP/1.1[0m" 302 -
+10.168.229.123 - - [31/Oct/2026 22:26:25] "GET /login HTTP/1.1" 200 -
+10.168.229.123 - - [31/Oct/2026 22:26:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+10.168.229.123 - - [31/Oct/2026 22:51:04] "POST /login HTTP/1.1" 200 -
+10.168.229.123 - - [31/Oct/2026 22:51:13] "POST /login HTTP/1.1" 200 -
+10.168.229.123 - - [31/Oct/2026 22:51:22] "POST /login HTTP/1.1" 200 -
+10.168.229.123 - - [31/Oct/2026 22:51:36] "POST /login HTTP/1.1" 200 -

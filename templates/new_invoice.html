@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% block content %}
+<div class="card"><div class="card-title" style="color:{% if inv_type == 'buy' %}#00d4ff{% else %}#00ff88{% endif %}">{% if inv_type == 'buy' %}📦 فاکتور خرید{% else %}🛒 فاکتور فروش{% endif %}</div>
+<form method="POST">
+<div class="form-group"><label>طرف حساب</label><select name="counterparty_id"><option value="">انتخاب...</option></select></div>
+<div class="form-group"><label>کالا</label><select name="product_id">{% for p in products %}<option value="{{ p.id }}">{{ p.name }} (موجودی: {{ p.stock }})</option>{% endfor %}</select></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="form-group"><label>سایز</label><input type="text" name="size" placeholder="M"></div>
+<div class="form-group"><label>رنگ</label><input type="text" name="color" placeholder="قرمز"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="form-group"><label>تعداد</label><input type="number" name="quantity" required min="1"></div>
+<div class="form-group"><label>قیمت واحد</label><input type="number" name="unit_price" required></div>
+</div>
+<div class="form-group"><label>وضعیت پرداخت</label><select name="status"><option value="paid">نقدی (تاثیر در صندوق)</option><option value="credit">نسیه</option></select></div>
+<button type="submit" class="btn {% if inv_type == 'buy' %}btn-blue{% else %}btn-green{% endif %}">ثبت فاکتور</button>
+</form></div>
+{% endblock %}

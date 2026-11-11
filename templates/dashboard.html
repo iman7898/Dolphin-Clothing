@@ -1,0 +1,38 @@
+{% extends 'base.html' %}{% block content %}
+<!-- کارت‌های مالی -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+    <div class="card" style="margin:0;text-align:center;padding:15px;border-color:#00d4ff">
+        <div style="color:#a0c4ff;font-size:12px">فروش امروز</div>
+        <div style="font-size:18px;color:#00d4ff;font-weight:bold">{{ "{:,}".format(today_sales) }}</div>
+    </div>
+    <div class="card" style="margin:0;text-align:center;padding:15px;border-color:#ff4d4d">
+        <div style="color:#a0c4ff;font-size:12px">خرید امروز</div>
+        <div style="font-size:18px;color:#ff4d4d;font-weight:bold">{{ "{:,}".format(today_buys) }}</div>
+    </div>
+    <div class="card" style="margin:0;text-align:center;padding:15px;border-color:#ffd700">
+        <div style="color:#a0c4ff;font-size:12px">هزینه امروز</div>
+        <div style="font-size:18px;color:#ffd700;font-weight:bold">{{ "{:,}".format(today_expenses) }}</div>
+    </div>
+    <div class="card" style="margin:0;text-align:center;padding:15px;border-color:#00ff88">
+        <div style="color:#a0c4ff;font-size:12px">سود خالص امروز ({{ "{:.1f}".format(profit_percent) }}%)</div>
+        <div style="font-size:18px;color:#00ff88;font-weight:bold">{{ "{:,}".format(today_profit) }}</div>
+    </div>
+</div>
+
+<!-- نقطه سر به سر -->
+<div class="card" style="background:linear-gradient(135deg,#1e293b,#0f172a);border-color:#8a2be2;text-align:center">
+    <div style="color:#a0c4ff;font-size:14px">📉 نقطه سر به سر فروش امروز</div>
+    <div style="font-size:22px;color:#8a2be2;font-weight:bold;margin-top:5px">{{ "{:,}".format(bep) }} تومان</div>
+    <div style="font-size:11px;color:#666;margin-top:5px">(برای پوشش هزینه‌های امروز، باید این مقدار بفروشید)</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+    <a href="/reports" class="btn btn-gold">📊 گزارشات فروش و خرید</a>
+    <a href="/expenses" class="btn btn-red">💸 ثبت هزینه جدید</a>
+</div>
+
+<!-- هشدار کالای راکد -->
+<div class="card"><div class="card-title" style="color:#ff4d4d">⚠️ هشدار کالای راکد (بیش از ۳۰ روز)</div>
+{% if dead_stock %}<ul>{% for p in dead_stock %}<li style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a5276"><span>{{ p.name }}</span><span style="color:#ff4d4d">{{ p.stock }} عدد</span></li>{% endfor %}</ul>
+{% else %}<p style="color:#a0c4ff;text-align:center">هیچ کالای راکدی وجود ندارد.</p>{% endif %}</div>
+{% endblock %}

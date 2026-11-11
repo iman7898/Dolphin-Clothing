@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block content %}
+<div class="card" style="margin-top:50px"><h2 style="text-align:center;color:#00d4ff;margin-bottom:20px">ورود به دلفین پوشاک</h2>
+<form method="POST">
+<div class="form-group"><label>نوع کاربری</label><select name="role"><option value="admin">👑 مدیر</option><option value="seller">🧑‍💼 فروشنده</option></select></div>
+<div class="form-group"><label>رمز عبور</label><input type="password" name="password" required></div>
+<button type="submit" class="btn btn-blue">ورود به سیستم</button>
+</form></div>
+{% endblock %}

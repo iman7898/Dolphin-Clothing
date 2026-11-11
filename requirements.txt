@@ -1,0 +1,6 @@
+Flask
+qrcode
+pillow
+gunicorn
+libsql
+python-dotenv

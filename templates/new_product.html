@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% block content %}
+<div class="card"><div class="card-title">➕ ثبت کالای جدید</div>
+<form method="POST">
+<div class="form-group"><label>نام کالا</label><input type="text" name="name" required></div>
+<div class="form-group"><label>دسته‌بندی</label><input type="text" name="category"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="form-group"><label>سایزها (با کاما)</label><input type="text" name="sizes" placeholder="S, M, L"></div>
+<div class="form-group"><label>رنگ‌ها (با کاما)</label><input type="text" name="colors" placeholder="قرمز, آبی"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="form-group"><label>قیمت خرید</label><input type="number" name="purchase_price" required></div>
+<div class="form-group"><label>قیمت فروش</label><input type="number" name="sale_price" required></div>
+</div>
+<div class="form-group"><label>موجودی اولیه</label><input type="number" name="stock" required></div>
+<button type="submit" class="btn btn-blue">ثبت کالا و تولید بارکد</button>
+</form></div>
+{% endblock %}

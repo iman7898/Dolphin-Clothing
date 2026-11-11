@@ -1,0 +1,51 @@
+{% extends 'base.html' %}{% block content %}
+<div class="card-title" style="text-align:center;font-size:20px;margin-bottom:20px">🛒 فروشگاه بصری</div>
+{% if not products %}
+<div class="card" style="text-align:center"><p style="color:#a0c4ff">هیچ کالایی در انبار موجود نیست.</p></div>
+{% else %}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px">
+{% for p in products %}
+<div onclick="showProductInfo({{ p.id }})" style="text-decoration:none;cursor:pointer">
+    <div class="card" style="margin:0;text-align:center;padding:15px;border-color:#00ff88">
+        <div style="font-size:30px;margin-bottom:10px">👕</div>
+        <div style="color:white;font-weight:bold;font-size:14px">{{ p.name }}</div>
+        <div style="color:#00ff88;font-size:16px;margin-top:5px">{{ "{:,}".format(p.sale_price) }}</div>
+    </div>
+</div>
+{% endfor %}
+</div>{% endif %}
+
+<!-- Modal (پنجره اطلاعات کالا) -->
+<div id="productModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;justify-content:center;align-items:center">
+    <div style="background:#06213b;border:1.5px solid #00d4ff;border-radius:20px;padding:20px;width:90%;max-width:400px;color:white">
+        <h3 id="m_name" style="color:#00d4ff;margin-bottom:15px;border-bottom:1px dashed #1a5276;padding-bottom:10px">نام کالا</h3>
+        <p style="margin-bottom:8px">موجودی انبار: <span id="m_stock" style="color:#00ff88;font-weight:bold"></span> عدد</p>
+        <p style="margin-bottom:8px">آخرین ویرایش: <span id="m_update" style="color:#a0c4ff;font-size:12px"></span></p>
+        <hr style="border-color:#1a5276;margin:10px 0">
+        <p style="margin-bottom:8px">آخرین خرید: <span id="m_buy" style="color:#ffd700"></span></p>
+        <p style="margin-bottom:15px">آخرین فروش: <span id="m_sell" style="color:#00ff88"></span></p>
+        
+        <a id="m_sell_btn" href="#" class="btn btn-green" style="text-decoration:none;display:block">🛒 رفتن به فاکتور فروش</a>
+        <button onclick="closeModal()" class="btn" style="background:#333;color:white;margin-top:10px">بستن</button>
+    </div>
+</div>
+
+<script>
+function showProductInfo(id) {
+    fetch('/api/product_info/' + id)
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('m_name').innerText = data.name;
+        document.getElementById('m_stock').innerText = data.stock;
+        document.getElementById('m_update').innerText = data.updated_at;
+        document.getElementById('m_buy').innerText = data.last_buy_price + ' تومان ( ' + data.last_buy_date + ' )';
+        document.getElementById('m_sell').innerText = data.last_sell_price + ' تومان ( ' + data.last_sell_date + ' )';
+        document.getElementById('m_sell_btn').href = '/invoice/new/sell';
+        document.getElementById('productModal').style.display = 'flex';
+    });
+}
+function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+}
+</script>
+{% endblock %}
